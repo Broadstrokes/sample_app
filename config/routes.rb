@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'ccsf_rails/assignments'
+  
   get 'ccsf_rails/index'
 
   get 'ccsf_rails/links'

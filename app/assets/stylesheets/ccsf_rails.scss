@@ -1,3 +1,31 @@
 // Place all the styles related to the ccsf_rails controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+$serif: "Helvetica Neue, Helvetica, Arial";
+$background-color: #fefcf0;
+$border-color: red;
+$color: #222;
+
+html {background-color: #eee;}
+body {
+    width: 800px;
+    margin: 50px auto;
+    border: solid 2px gray;
+    background-color: $background-color;
+    padding: 50px;
+    font-family: $serif;
+    color: $color;
+}
+
+.assignments-table {
+    .assignment-row {
+        border-color: $border-color;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        background-color: blue;
+        color: white;
+        font-weight: bold;
+    }    
+}

@@ -1,0 +1,21 @@
+<!-- app/views/ccsf_rails/assignments.html.erb -->
+
+<section class='container'>
+    <h1>My Assignments</h1>
+    <p>File: <%= __FILE__ %></p>
+    <p>Time: <%=Time.now %></p>
+    
+    <table class='assignments-table'>
+    <% @assignments.each do |assignment| %>
+        <tr class='assignment-row'>
+            <td>Name: </td>
+            <td class='assignment-name'><%= assignment['name'] %></td>
+        </tr>
+        <tr class='assignment-row'>
+            <td>Description: </td>
+            <td class='assignment-description'><%= assignment['description'] %></td>
+        </tr>
+    <% end %>
+    </table>    
+    
+</section>
