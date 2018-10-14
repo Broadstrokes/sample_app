@@ -11,9 +11,20 @@ class User < ApplicationRecord
     
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
     
+    before_save { self.email = email.downcase }
+    # Same as self.email = self.email.downcase
+    # (where self refers to the current user), but inside the User model the 
+    # self keyword is optional on the right-hand side
+    
+    # before_save callback can be written using the 
+    # “bang” method email.downcase! to modify the email attribute directly
+    # before_save { email.downcase! }
+    
     validates :name, presence: true, length: { maximum: 50 }
     validates :email, 
         presence: true,
         length: { maximum: 255 },
-        format: { with: VALID_EMAIL_REGEX }
+        format: { with: VALID_EMAIL_REGEX },
+        # uniqueness: true
+        uniqueness: { case_sensitive: false }
 end
