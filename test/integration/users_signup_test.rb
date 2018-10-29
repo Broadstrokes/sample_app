@@ -41,6 +41,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     # resulting in a rendering of the 'users/show' template
     follow_redirect!
     assert_template 'users/show'
+    assert is_logged_in?
     assert_not flash.empty?
     assert_select 'div.alert-success'
   end
