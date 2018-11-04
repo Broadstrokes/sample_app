@@ -6,7 +6,12 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       # log the user & redirect to users who page
-      log_in(user)
+      log_in user
+      
+      # remember session using the session helper method remember
+      # NB: this method is not the same as the User.remember method
+      # this method calls the User.remember method inside it
+      remember user
       
       # NB: the compact redirect redirect_to user
       # Rails automatically converts this to the route for the 
