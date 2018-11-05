@@ -90,7 +90,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test 'authenticated? should return false for a user with nil digest' do
-    # @user defined in the setup method does not have a remember_digest
+    # @user defined in the setup method does not have a remember_digest 
     assert_not @user.authenticated?('') # it doesn't matter what the value of remember_token is
   end
 end
