@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       # remember session using the session helper method remember
       # NB: this method is not the same as the User.remember method
       # this method calls the User.remember method inside it
-      remember user
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       
       # NB: the compact redirect redirect_to user
       # Rails automatically converts this to the route for the 
