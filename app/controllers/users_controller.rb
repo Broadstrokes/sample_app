@@ -24,6 +24,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params) # ch 7.3.2 Use of strong parameters
+      # handle a successful update
+    else
+      render 'edit'
+    end
+  end
   
   private 
     
