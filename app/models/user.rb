@@ -29,11 +29,16 @@ class User < ApplicationRecord
         format: { with: VALID_EMAIL_REGEX },
         # uniqueness: true
         uniqueness: { case_sensitive: false }
-    validates :password,
-        presence: true,
-        length: { minimum: 6 }
     
     has_secure_password
+    
+    validates :password,
+        presence: true,
+        length: { minimum: 6 },
+        # allowing nil allows a user to update fields 
+        # other than password, otherwise password empty
+        # validation is triggered
+        allow_nil: true  
     
     # Returns the hash digest of a given string
     def User.digest(string)

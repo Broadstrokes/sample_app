@@ -28,6 +28,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params) # ch 7.3.2 Use of strong parameters
       # handle a successful update
+      flash[:success] = 'Profile updated'
+      redirect_to @user
     else
       render 'edit'
     end
