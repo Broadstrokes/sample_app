@@ -16,8 +16,8 @@ class SessionsController < ApplicationController
       # NB: the compact redirect redirect_to user
       # Rails automatically converts this to the route for the 
       # user’s profile page: user_url(user)
-      redirect_to @user
-    else 
+      redirect_back_or @user
+    else
       # create an error message
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
