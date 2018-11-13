@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
+  # any sufficiently sophisticated attacker could simply issue 
+  # a DELETE request directly from the command line to delete 
+  # any user on the site
+  # A before filter restricting the destroy action to admins
+  before_action :admin_user, only: :destroy
   
   def index
     @users = User.paginate(page: params[:page])
@@ -41,6 +46,13 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+  
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = 'User deleted'
+    redirect_to users_url
+  end
+  
   
   private 
     
