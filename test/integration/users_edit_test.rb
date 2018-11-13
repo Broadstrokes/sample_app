@@ -11,6 +11,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   # getting the edit page and re-rendered upon submission 
   # of invalid information
   test 'unsuccessful edit' do
+    log_in_as(@user)
     get edit_user_path(@user)
     assert_template 'users/edit'
     patch user_path(@user), params: {
@@ -26,6 +27,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
   
   test 'successful edit' do
+    log_in_as(@user)
     get edit_user_path(@user)
     assert_template 'users/edit'
     name = "Foo Bar"
