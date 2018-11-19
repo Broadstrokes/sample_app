@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    attr_accessor :remember_token
+    attr_accessor :remember_token, :activation_token
     
     # ADDING VALIDATION FOR NAME
     # same as writing validates(:name, {presence: true}) 
@@ -13,7 +13,11 @@ class User < ApplicationRecord
     
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
     
-    before_save { self.email = email.downcase }
+    # before_save callback is automatically called before the object is saved,
+    # which includes both object creation and updates
+    before_save :downcase_email
+    
+    # Same as before_save { self.email = email.downcase }
     # Same as self.email = self.email.downcase
     # (where self refers to the current user), but inside the User model the 
     # self keyword is optional on the right-hand side
@@ -21,6 +25,11 @@ class User < ApplicationRecord
     # before_save callback can be written using the 
     # “bang” method email.downcase! to modify the email attribute directly
     # before_save { email.downcase! }
+    
+    
+    # in the case of the activation digest we only want the callback 
+    # to fire when the user is created
+    before_create :create_activation_digest
     
     validates :name, presence: true, length: { maximum: 50 }
     validates :email, 
@@ -68,4 +77,17 @@ class User < ApplicationRecord
     def forget
         update_attribute(:remember_digest, nil)
     end
+    
+    
+    private
+        # Converts email to all lower-case
+        def downcase_email
+            self.email = email.downcase
+        end
+        
+        # Creates and assigns the activation token & digest
+        def create_activation_digest
+            self.activation_token  = User.new_token
+            self.activation_digest = User.digest(activation_token)
+        end
 end
