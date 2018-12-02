@@ -36,6 +36,12 @@ class PasswordResetsController < ApplicationController
       render 'edit'
     elsif @user.update_attributes(user_params) # case (4)
       log_in @user
+      # Expiring password resets after a couple of hours is a nice security precaution,
+      # but if a user reset their password from a public machine, anyone could press
+      # the back button and change the password (and get logged in to the site). 
+      # To fix this, clear the reset digest on successful password update
+      @user.update_attribute(:reset_digest, nil)
+
       flash[:success] = "Password has been reset."
       redirect_to @user
     else
