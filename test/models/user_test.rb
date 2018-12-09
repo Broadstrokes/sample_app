@@ -93,4 +93,14 @@ class UserTest < ActiveSupport::TestCase
     # @user defined in the setup method does not have a remember_digest 
     assert_not @user.authenticated?(:remember, '') # it doesn't matter what the value of remember_token is
   end
+  
+  test 'associated microposts should be destroyed' do
+    # create 1 post by user, destroy that user, total Micropost count should
+    # go down by 1
+    @user.save
+    @user.microposts.create!(content: 'Lorem ipsumussss')
+    assert_difference 'Micropost.count', -1 do
+      @user.destroy
+    end
+  end
 end
