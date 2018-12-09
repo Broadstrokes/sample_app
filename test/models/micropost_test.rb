@@ -26,4 +26,10 @@ class MicropostTest < ActiveSupport::TestCase
     assert_not @micropost.valid?
   end
   
+  test "order shold be most recent first" do
+    # test to verify that the first micropost in the database 
+    # is the same as a fixture micropost
+    assert_equal microposts(:most_recent), Micropost.first
+  end
+  
 end
