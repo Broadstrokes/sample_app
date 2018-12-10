@@ -7,6 +7,10 @@ class MicropostsController < ApplicationController
       flash[:success] = "Micropost created!"
       redirect_to root_url
     else
+      # on failed micropost submission, the Home page expects an @feed_items 
+      # instance variable, so failed submissions will break
+      # soltion: suppress the feed entirely by assigning it an empty array
+      @feed_items = []
       render 'static_pages/home'
     end
   end

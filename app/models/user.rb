@@ -111,6 +111,15 @@ class User < ApplicationRecord
         reset_sent_at < 2.hours.ago
     end
     
+    # Defines a proto-feed
+    def feed
+        # the ? in the query below ensures that id is properly escaped before 
+        # being included in the underlying SQL query, thereby avoiding a 
+        # serious security hole called SQL injection. The id attribute here is 
+        # just an integer (i.e., self.id, the unique ID of the user)
+        Micropost.where("user_id = ?", id)
+    end
+    
     private
         # Converts email to all lower-case
         def downcase_email
