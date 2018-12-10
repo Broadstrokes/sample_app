@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update] # arranges for the RESTful routes
+  resources :microposts, only: [:create, :destroy]
+  
   
   get 'ccsf_rails/about'
   get 'ccsf_rails/index'
