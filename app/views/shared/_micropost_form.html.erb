@@ -4,4 +4,9 @@
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
+  
+  <!--Add image upload to the micropost create form-->
+  <span class="picture">
+    <%= f.file_field :picture %> <!--we need to include a file_field tag in the micropost form-->
+  </span>
 <% end %>

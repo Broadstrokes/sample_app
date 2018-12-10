@@ -28,7 +28,7 @@ class MicropostsController < ApplicationController
    
     # Permits only the micropost’s content attribute to be modified through the web
     def micropost_params
-      params.require(:micropost).permit(:content)
+      params.require(:micropost).permit(:content, :picture) # list of permitted attributes
     end
     
     def correct_user
