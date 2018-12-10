@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 gem 'rails',        '5.1.6'
 gem 'bcrypt',       '3.1.12'
 gem 'faker',        '1.7.3' # generate fake user
-gem 'carrierwave',             '1.2.2' # To handle an uploaded image and associate it with the Micropost model
-gem 'mini_magick',             '4.7.0'
+gem 'carrierwave',             '1.2.2' # to handle an uploaded image and associate it with the Micropost model
+gem 'mini_magick',             '4.7.0' # to resize images
 gem 'will_paginate',           '3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0' # configures will_paginate to use Bootstrap’s pagination styles
 gem 'puma',         '3.9.1'

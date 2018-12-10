@@ -1,7 +1,10 @@
 class PictureUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
+  # resizes large images so that they aren’t any bigger than 400px 
+  # in either dimension, while simultaneously leaving smaller images alone
+  process resize_to_limit: [400, 400]
 
   # Choose what kind of storage to use for this uploader:
   storage :file
