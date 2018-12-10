@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore S3 info needed for carrierwave gem
-/config/initializers/carrier_wave.rb
+#/config/initializers/carrier_wave.rb
 
 # Ignore uploaded test images
 /public/uploads
