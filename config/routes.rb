@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   post '/login',    to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end    
+  end
+
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update] # arranges for the RESTful routes
   resources :microposts, only: [:create, :destroy]
