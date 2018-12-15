@@ -125,7 +125,7 @@ class User < ApplicationRecord
         # being included in the underlying SQL query, thereby avoiding a 
         # serious security hole called SQL injection. The id attribute here is 
         # just an integer (i.e., self.id, the unique ID of the user)
-        Micropost.where("user_id = ?", id)
+        Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
     end
     
     # Follows a user
