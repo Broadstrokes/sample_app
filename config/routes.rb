@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/finished',   to: 'final_exam#finished_the_course'
+
   get 'password_resets/new'
 
   get 'password_resets/edit'
